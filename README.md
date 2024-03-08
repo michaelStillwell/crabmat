@@ -12,8 +12,8 @@ Terminal based kanban bored inspired by [kabmat](https://github.com/PlankCipher/
 | l | move column focus right |
 | j | move card focus down |
 | k | move card focus up |
-| <C-h> | move column right |
-| <C-l> | move column left |
+| \<C-h\> | move column right |
+| \<C-l\> | move column left |
 | H | move card left |
 | L | move card right |
 | J | move card down |
@@ -35,7 +35,7 @@ Terminal based kanban bored inspired by [kabmat](https://github.com/PlankCipher/
 |---|---|
 | s | save card |
 | q/Esc | exit without saving |
-| <C-j> | edit description |
-| <C-k> | edit title |
+| \<C-j\> | edit description |
+| \<C-k\> | edit title |
 | Enter | when editing the title, edit description |
 
