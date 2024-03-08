@@ -161,10 +161,15 @@ impl App {
 
         if self.selected_column == 0 {
             self.selected_column = self.kanban.columns().len() - 1;
-            self.columns_start = self.kanban.columns().len() - self.columns_offset;
+            if self.kanban.columns().len() > self.columns_offset {
+                self.columns_start = self.kanban.columns().len() - self.columns_offset;
+            }
         } else {
             self.selected_column -= 1;
-            if self.columns_start > 0 && self.selected_column == self.columns_start - 1 {
+            if self.kanban.columns().len() > self.columns_offset
+                && self.columns_start > 0
+                && self.selected_column == self.columns_start - 1
+            {
                 self.columns_start -= 1;
             }
         }

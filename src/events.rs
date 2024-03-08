@@ -68,6 +68,7 @@ pub fn handle_events(app: &mut App) -> io::Result<bool> {
                             app.selected_card,
                         );
                         app.save_kanban();
+                        app.decrement_selected_card();
                     }
                 }
                 KeyCode::Char('L') => {
@@ -82,6 +83,7 @@ pub fn handle_events(app: &mut App) -> io::Result<bool> {
                             app.selected_card,
                         );
                         app.save_kanban();
+                        app.decrement_selected_card();
                     }
                 }
                 KeyCode::Char('J') => {

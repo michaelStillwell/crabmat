@@ -190,7 +190,7 @@ impl Kanban {
     }
 
     pub fn swap_column(&mut self, first: usize, second: usize) {
-        if self.columns().len() < first && self.columns().len() < second {
+        if self.get_column(first).is_none() || self.get_column(second).is_none() {
             return;
         }
 
@@ -202,7 +202,7 @@ impl Kanban {
     }
 
     pub fn set_col_title(&mut self, column_idx: usize, title: &str) {
-        if self.columns().len() < column_idx {
+        if self.get_column(column_idx).is_none() {
             return;
         }
 
@@ -214,7 +214,7 @@ impl Kanban {
     }
 
     pub fn add_card(&mut self, column_idx: usize, card: Card) {
-        if self.columns.len() < column_idx {
+        if self.get_column(column_idx).is_none() {
             return;
         }
 
@@ -222,8 +222,7 @@ impl Kanban {
     }
 
     pub fn swap_card(&mut self, column_idx: usize, first: usize, second: usize) {
-        if self.columns()[column_idx].cards.len() < first
-            && self.columns()[column_idx].cards.len() < second
+        if self.get_card(column_idx, first).is_none() || self.get_card(column_idx, second).is_none()
         {
             return;
         }
@@ -232,13 +231,7 @@ impl Kanban {
     }
 
     pub fn move_card(&mut self, column_idx: usize, new_column_idx: usize, card_idx: usize) {
-        if column_idx > self.columns.len() || new_column_idx > self.columns.len() {
-            return;
-        }
-
-        if card_idx > self.columns[column_idx].cards.len()
-            || card_idx > self.columns[new_column_idx].cards.len()
-        {
+        if self.get_column(column_idx).is_none() || self.get_column(new_column_idx).is_none() {
             return;
         }
 
@@ -255,16 +248,7 @@ impl Kanban {
             return;
         }
 
-        let mut cards = Vec::new();
-        for (col_idx, col) in self.columns.iter_mut().enumerate() {
-            for (car_idx, card) in col.cards.iter_mut().enumerate() {
-                if col_idx == column_idx && car_idx == card_idx {
-                    continue;
-                }
-                cards.push(card.clone());
-            }
-        }
-        self.columns[column_idx].cards = cards;
+        self.columns[column_idx].cards.remove(card_idx);
     }
 
     pub fn set_card_title(&mut self, column_idx: usize, item_idx: usize, title: &str) {

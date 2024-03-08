@@ -60,21 +60,11 @@ pub fn events(key: KeyEvent, is_new: bool, app: &mut App) {
             } if app.vim.is_normal() => {}
             Input {
                 key: Key::Enter, ..
-            } if app.vim.is_insert() => {}
+            } if app.vim.is_insert() => save(is_new, app),
             Input {
                 key: Key::Char('s') | Key::Enter,
                 ..
-            } if app.vim.is_normal() => {
-                if is_new {
-                    app.kanban
-                        .add_column(Column::new(&app.title_input.lines().concat(), Vec::new()));
-                } else {
-                    app.kanban
-                        .set_col_title(app.selected_column, &app.title_input.lines().join("\n"));
-                }
-                app.save_kanban();
-                app.current_screen = CurrentScreen::Main;
-            }
+            } if app.vim.is_normal() => save(is_new, app),
             Input {
                 key: Key::Char('q') | Key::Esc,
                 ..
@@ -84,4 +74,16 @@ pub fn events(key: KeyEvent, is_new: bool, app: &mut App) {
             }
         }
     }
+}
+
+fn save(is_new: bool, app: &mut App) {
+    if is_new {
+        app.kanban
+            .add_column(Column::new(&app.title_input.lines().concat(), Vec::new()));
+    } else {
+        app.kanban
+            .set_col_title(app.selected_column, &app.title_input.lines().join("\n"));
+    }
+    app.save_kanban();
+    app.current_screen = CurrentScreen::Main;
 }

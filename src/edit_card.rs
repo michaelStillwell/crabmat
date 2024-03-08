@@ -67,7 +67,13 @@ pub fn events(key: KeyEvent, is_new: bool, app: &mut App) {
             Input {
                 key: Key::Enter, ..
             } if app.vim.is_insert()
-                && !matches!(app.currently_editing, Some(CurrentlyEditing::Description)) => {}
+                && !matches!(app.currently_editing, Some(CurrentlyEditing::Description)) =>
+            {
+                if !app.title_value().is_empty() {
+                    app.update_vim(Input::from(key));
+                    app.edit_description();
+                }
+            }
             Input {
                 key: Key::Char('s') | Key::Enter,
                 ..
