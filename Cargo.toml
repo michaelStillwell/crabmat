@@ -2,7 +2,7 @@
 name = "crabmat"
 version = "0.1.0"
 edition = "2021"
-description = ""
+description = "Terminal based kanban board"
 license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
