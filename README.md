@@ -12,6 +12,16 @@ new kanban board.
 
 ---
 
+## Installation
+
+Currently the only way to install this is with `cargo`
+
+```sh
+cargo install crabmat
+```
+
+---
+
 ### Main Screen
 
 | Key | Action |
