@@ -36,7 +36,9 @@ pub fn handle_events(app: &mut App) -> io::Result<bool> {
                 }
                 KeyCode::Char('l') | KeyCode::Left => {
                     if key.modifiers == KeyModifiers::CONTROL {
-                        if app.kanban.columns().len() > 0 && app.selected_column < app.kanban.columns().len() - 1 {
+                        if app.kanban.columns().len() > 0
+                            && app.selected_column < app.kanban.columns().len() - 1
+                        {
                             app.kanban
                                 .swap_column(app.selected_column, app.selected_column + 1);
                             app.save_kanban();
