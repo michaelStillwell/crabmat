@@ -4,6 +4,14 @@ Terminal based kanban bored inspired by [kabmat](https://github.com/PlankCipher/
 
 ---
 
+## Usage
+
+Run `crabmat` in the terminal. If no file is supplied then a file named `kanban` will be created.
+And if the file doesn't have a title or is empty, you will be prompted to enter a title for the
+new kanban board.
+
+---
+
 ### Main Screen
 
 | Key | Action |
